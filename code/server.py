@@ -1,6 +1,28 @@
+import os
 
+class StorageServer:
+    def __init__(self, storage_path="Server_Storage"):
+        self.storage_path = storage_path
+        # Create storage folder if it doesn't exist
+        if not os.path.exists(storage_path):
+            os.makedirs(storage_path)
+            
+    def save_file(self, file_name, content):
+        file_path = os.path.join(self.storage_path, file_name)
+        with open(file_path, 'w') as f:
+            f.write(content)
+        return f"File '{file_name}' saved successfully!"
+    
+    def read_file(self, file_name):
+        file_path = os.path.join(self.storage_path, file_name)
+        if not os.path.exists(file_path):
+            return f"File '{file_name}' does not exist."
+        with open(file_path, 'r') as f:
+            data = f.read()
+        return data
 
-
+    def list_files(self):
+        return os.listdir(self.storage_path)
 
 
 
@@ -526,6 +548,7 @@ class StorageServer:
             return f"File '{filename}' does not exist."
         with open(file_path, "r") as f:
             return f.read()
+
 
 
 
