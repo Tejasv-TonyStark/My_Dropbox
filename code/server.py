@@ -9,7 +9,7 @@ class StorageServer:
             
     def save_file(self, file_name, content):
         file_path = os.path.join(self.storage_path, file_name)
-        with open(file_path, 'w') as f:
+        with open(file_path, 'wb') as f:
             f.write(content)
         return f"File '{file_name}' saved successfully!"
     
@@ -17,7 +17,7 @@ class StorageServer:
         file_path = os.path.join(self.storage_path, file_name)
         if not os.path.exists(file_path):
             return f"File '{file_name}' does not exist."
-        with open(file_path, 'r') as f:
+        with open(file_path, 'rb') as f:
             data = f.read()
         return data
 
@@ -548,6 +548,7 @@ class StorageServer:
             return f"File '{filename}' does not exist."
         with open(file_path, "r") as f:
             return f.read()
+
 
 
 
